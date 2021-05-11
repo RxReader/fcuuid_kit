@@ -2,6 +2,11 @@
 
 Flutter plugin for fcuuid.
 
+## iOS
+
+* [FCUUID](https://github.com/fabiocaccamo/FCUUID)
+* [Setup](https://github.com/fabiocaccamo/FCUUID#requirements--dependencies)
+
 ## Getting Started
 
 This project is a starting point for a Flutter
