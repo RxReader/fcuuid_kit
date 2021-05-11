@@ -1,73 +1,78 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class Fcuuid {
   const Fcuuid._();
 
-  static const MethodChannel _channel =
-      MethodChannel('v7lin.github.io/fcuuid_kit');
+  static const MethodChannel _channel = MethodChannel('v7lin.github.io/fcuuid_kit');
 
-  static Future<String> uuid() {
+  static Future<String> uuid() async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuid');
+    final String? uuid = await _channel.invokeMethod<String>('uuid');
+    return uuid!;
   }
 
   static Future<String> uuidForKey({
-    @required String key,
-  }) {
+    required String key,
+  }) async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>(
+    final String? uuid = await _channel.invokeMethod<String>(
       'uuidForKey',
       <String, dynamic>{
         'key': key,
       },
     );
+    return uuid!;
   }
 
-  static Future<String> uuidForSession() {
+  static Future<String> uuidForSession() async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuidForSession');
+    final String? uuid = await _channel.invokeMethod<String>('uuidForSession');
+    return uuid!;
   }
 
-  static Future<String> uuidForInstallation() {
+  static Future<String> uuidForInstallation() async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuidForInstallation');
+    final String? uuid = await _channel.invokeMethod<String>('uuidForInstallation');
+    return uuid!;
   }
 
-  static Future<String> uuidForVendor() {
+  static Future<String> uuidForVendor() async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuidForVendor');
+    final String? uuid = await _channel.invokeMethod<String>('uuidForVendor');
+    return uuid!;
   }
 
-  static Future<String> uuidForDevice() {
+  static Future<String> uuidForDevice() async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuidForDevice');
+    final String? uuid = await _channel.invokeMethod<String>('uuidForDevice');
+    return uuid!;
   }
 
   static Future<String> uuidForDeviceMigratingValue({
-    @required String value,
-    @required bool commitMigration,
-  }) {
+    required String value,
+    required bool commitMigration,
+  }) async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>(
+    final String? uuid = await _channel.invokeMethod<String>(
       'uuidForDeviceMigratingValue',
       <String, dynamic>{
         'value': value,
         'commitMigration': commitMigration,
       },
     );
+    return uuid!;
   }
 
-  static Future<String> uuidForDeviceMigratingValueForKey({
-    @required String key,
-    String service,
-    String accessGroup,
-    @required bool commitMigration,
-  }) {
+  static Future<String?> uuidForDeviceMigratingValueForKey({
+    required String key,
+    String? service,
+    String? accessGroup,
+    required bool commitMigration,
+  }) async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>(
+    final String? uuid = await _channel.invokeMethod<String>(
       'uuidForDeviceMigratingValueForKey',
       <String, dynamic>{
         'key': key,
@@ -76,28 +81,31 @@ class Fcuuid {
         'commitMigration': commitMigration,
       },
     );
+    return uuid!;
   }
 
-  static Future<List<String>> uuidsOfUserDevices() {
+  static Future<List<String>> uuidsOfUserDevices() async {
     assert(Platform.isIOS);
-    return _channel.invokeListMethod<String>('uuidsOfUserDevices');
+    final List<String>? uuids = await _channel.invokeListMethod<String>('uuidsOfUserDevices');
+    return uuids!;
   }
 
-  static Future<List<String>> uuidsOfUserDevicesExcludingCurrentDevice() {
+  static Future<List<String>> uuidsOfUserDevicesExcludingCurrentDevice() async {
     assert(Platform.isIOS);
-    return _channel
-        .invokeListMethod<String>('uuidsOfUserDevicesExcludingCurrentDevice');
+    final List<String>? uuids = await _channel.invokeListMethod<String>('uuidsOfUserDevicesExcludingCurrentDevice');
+    return uuids!;
   }
 
   static Future<bool> uuidValueIsValid({
-    @required String uuid,
-  }) {
+    required String uuid,
+  }) async {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<bool>(
-      'uuidForKey',
+    final bool? isValid = await _channel.invokeMethod<bool>(
+      'uuidValueIsValid',
       <String, dynamic>{
         'uuid': uuid,
       },
     );
+    return isValid!;
   }
 }

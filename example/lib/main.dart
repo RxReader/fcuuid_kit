@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 
-import 'package:flutter/services.dart';
 import 'package:fcuuid_kit/fcuuid_kit.dart';
 
 void main() {
@@ -26,6 +25,9 @@ class _MyAppState extends State<MyApp> {
     print('uuidForInstallation: ${await Fcuuid.uuidForInstallation()}');
     print('uuidForVendor: ${await Fcuuid.uuidForVendor()}');
     print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
+    print('uuidsOfUserDevices: ${await Fcuuid.uuidsOfUserDevices()}');
+    print('uuidsOfUserDevicesExcludingCurrentDevice: ${await Fcuuid.uuidsOfUserDevicesExcludingCurrentDevice()}');
+    print('uuidValueIsValid: ${await Fcuuid.uuidValueIsValid(uuid: await Fcuuid.uuidForDevice())}');
   }
 
   @override
