@@ -6,7 +6,8 @@ import 'package:flutter/services.dart';
 class Fcuuid {
   const Fcuuid._();
 
-  static const MethodChannel _channel = MethodChannel('v7lin.github.io/fcuuid_kit');
+  static const MethodChannel _channel =
+      MethodChannel('v7lin.github.io/fcuuid_kit');
 
   static Future<String> uuid() {
     assert(Platform.isIOS);
@@ -17,9 +18,12 @@ class Fcuuid {
     @required String key,
   }) {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuidForKey', <String, dynamic>{
-      'key': key,
-    });
+    return _channel.invokeMethod<String>(
+      'uuidForKey',
+      <String, dynamic>{
+        'key': key,
+      },
+    );
   }
 
   static Future<String> uuidForSession() {
@@ -47,10 +51,13 @@ class Fcuuid {
     @required bool commitMigration,
   }) {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuidForDeviceMigratingValue', <String, dynamic>{
-      'value': value,
-      'commitMigration': commitMigration,
-    });
+    return _channel.invokeMethod<String>(
+      'uuidForDeviceMigratingValue',
+      <String, dynamic>{
+        'value': value,
+        'commitMigration': commitMigration,
+      },
+    );
   }
 
   static Future<String> uuidForDeviceMigratingValueForKey({
@@ -60,12 +67,15 @@ class Fcuuid {
     @required bool commitMigration,
   }) {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<String>('uuidForDeviceMigratingValueForKey', <String, dynamic>{
-      'key': key,
-      'service': service,
-      'accessGroup': accessGroup,
-      'commitMigration': commitMigration,
-    });
+    return _channel.invokeMethod<String>(
+      'uuidForDeviceMigratingValueForKey',
+      <String, dynamic>{
+        'key': key,
+        'service': service,
+        'accessGroup': accessGroup,
+        'commitMigration': commitMigration,
+      },
+    );
   }
 
   static Future<List<String>> uuidsOfUserDevices() {
@@ -75,15 +85,19 @@ class Fcuuid {
 
   static Future<List<String>> uuidsOfUserDevicesExcludingCurrentDevice() {
     assert(Platform.isIOS);
-    return _channel.invokeListMethod<String>('uuidsOfUserDevicesExcludingCurrentDevice');
+    return _channel
+        .invokeListMethod<String>('uuidsOfUserDevicesExcludingCurrentDevice');
   }
 
   static Future<bool> uuidValueIsValid({
     @required String uuid,
   }) {
     assert(Platform.isIOS);
-    return _channel.invokeMethod<bool>('uuidForKey', <String, dynamic>{
-      'uuid': uuid,
-    });
+    return _channel.invokeMethod<bool>(
+      'uuidForKey',
+      <String, dynamic>{
+        'uuid': uuid,
+      },
+    );
   }
 }
