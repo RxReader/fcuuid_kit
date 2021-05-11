@@ -27,13 +27,16 @@ class _MyAppState extends State<MyApp> {
     print('uuidForInstallation: ${await Fcuuid.uuidForInstallation()}');
     print('uuidForVendor: ${await Fcuuid.uuidForVendor()}');
     print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
-    print('uuidForDeviceMigratingValue: ${await Fcuuid.uuidForDeviceMigratingValue(value: await Fcuuid.uuid(), commitMigration: true)}');
+    print(
+        'uuidForDeviceMigratingValue: ${await Fcuuid.uuidForDeviceMigratingValue(value: await Fcuuid.uuid(), commitMigration: true)}');
     print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
     // print('uuidForDeviceMigratingValueForKey: ${await Fcuuid.uuidForDeviceMigratingValueForKey(key: 'abc', commitMigration: true)}'); // 错误示例（会崩溃），不知正确用法
     // print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
     print('uuidsOfUserDevices: ${await Fcuuid.uuidsOfUserDevices()}');
-    print('uuidsOfUserDevicesExcludingCurrentDevice: ${await Fcuuid.uuidsOfUserDevicesExcludingCurrentDevice()}');
-    print('uuidValueIsValid: ${await Fcuuid.uuidValueIsValid(uuid: await Fcuuid.uuidForDevice())}');
+    print(
+        'uuidsOfUserDevicesExcludingCurrentDevice: ${await Fcuuid.uuidsOfUserDevicesExcludingCurrentDevice()}');
+    print(
+        'uuidValueIsValid: ${await Fcuuid.uuidValueIsValid(uuid: await Fcuuid.uuidForDevice())}');
   }
 
   @override
