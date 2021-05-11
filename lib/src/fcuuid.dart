@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 class Fcuuid {
   const Fcuuid._();
 
-  static const MethodChannel _channel = MethodChannel('v7lin.github.io/fcuuid_kit');
+  static const MethodChannel _channel =
+      MethodChannel('v7lin.github.io/fcuuid_kit');
 
   static Future<String> uuid() async {
     assert(Platform.isIOS);
@@ -34,7 +35,8 @@ class Fcuuid {
 
   static Future<String> uuidForInstallation() async {
     assert(Platform.isIOS);
-    final String? uuid = await _channel.invokeMethod<String>('uuidForInstallation');
+    final String? uuid =
+        await _channel.invokeMethod<String>('uuidForInstallation');
     return uuid!;
   }
 
@@ -86,13 +88,15 @@ class Fcuuid {
 
   static Future<List<String>> uuidsOfUserDevices() async {
     assert(Platform.isIOS);
-    final List<String>? uuids = await _channel.invokeListMethod<String>('uuidsOfUserDevices');
+    final List<String>? uuids =
+        await _channel.invokeListMethod<String>('uuidsOfUserDevices');
     return uuids!;
   }
 
   static Future<List<String>> uuidsOfUserDevicesExcludingCurrentDevice() async {
     assert(Platform.isIOS);
-    final List<String>? uuids = await _channel.invokeListMethod<String>('uuidsOfUserDevicesExcludingCurrentDevice');
+    final List<String>? uuids = await _channel
+        .invokeListMethod<String>('uuidsOfUserDevicesExcludingCurrentDevice');
     return uuids!;
   }
 
