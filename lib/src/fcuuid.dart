@@ -94,7 +94,7 @@ class Fcuuid {
   }) {
     assert(Platform.isIOS);
     return _channel.invokeMethod<bool>(
-      'uuidForKey',
+      'uuidValueIsValid',
       <String, dynamic>{
         'uuid': uuid,
       },
