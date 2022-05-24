@@ -13,7 +13,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run clang lint
         run: |
-          brew install clang-format
           clang-format -style=file -i ios/Classes/*.h ios/Classes/*.m --dry-run
       - uses: subosito/flutter-action@v2
         with:
