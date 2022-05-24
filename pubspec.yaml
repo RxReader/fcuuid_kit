@@ -2,7 +2,7 @@ name: fcuuid_kit
 description: Flutter plugin for fcuuid.
 version: 1.0.0
 # author: v7lin <v7lin@qq.com>
-homepage: https://github.com/rxreader/fcuuid_kit
+homepage: https://github.com/RxReader/fcuuid_kit
 
 environment:
   sdk: ">=2.17.1 <3.0.0"
