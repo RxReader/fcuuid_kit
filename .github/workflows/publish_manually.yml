@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   publish_manually:
     name: Publish Manually
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -27,8 +27,6 @@ jobs:
       - name: Run update credentials
         env:
           UPDATE_SECRETS_PAT_TOKEN: ${{ secrets.UPDATE_SECRETS_PAT_TOKEN }}
-          ORGANIZATION: ${{ github.repository_owner }}
         run: |
           gh auth login --with-token <<< $UPDATE_SECRETS_PAT_TOKEN
           gh secret set CREDENTIALS_JSON < $PUB_CACHE/credentials.json
-          gh secret set CREDENTIALS_JSON --org $ORGANIZATION --visibility all
