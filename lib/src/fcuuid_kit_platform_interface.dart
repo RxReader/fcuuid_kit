@@ -1,18 +1,31 @@
-import 'package:fcuuid_kit/src/fcuuid.dart';
 import 'package:fcuuid_kit/src/fcuuid_kit_method_channel.dart';
-import 'package:fcuuid_kit/src/fcuuid_kit_platform_interface.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockFcuuidKitPlatform
-    with MockPlatformInterfaceMixin
-    implements FcuuidKitPlatform {
-  @override
-  Future<String> uuid() {
-    return Future<String>.value('123456789');
+abstract class FcuuidKitPlatform extends PlatformInterface {
+  /// Constructs a FcuuidKitPlatform.
+  FcuuidKitPlatform() : super(token: _token);
+
+  static final Object _token = Object();
+
+  static FcuuidKitPlatform _instance = MethodChannelFcuuidKit();
+
+  /// The default instance of [FcuuidKitPlatform] to use.
+  ///
+  /// Defaults to [MethodChannelFcuuidKit].
+  static FcuuidKitPlatform get instance => _instance;
+
+  /// Platform-specific implementations should set this with their own
+  /// platform-specific class that extends [FcuuidKitPlatform] when
+  /// they register themselves.
+  static set instance(FcuuidKitPlatform instance) {
+    PlatformInterface.verifyToken(instance, _token);
+    _instance = instance;
   }
 
-  @override
+  Future<String> uuid() {
+    throw UnimplementedError('uuid() has not been implemented.');
+  }
+
   Future<String> uuidForKey({
     required String key,
   }) {
@@ -20,27 +33,22 @@ class MockFcuuidKitPlatform
         'uuidForKey({required key}) has not been implemented.');
   }
 
-  @override
   Future<String> uuidForSession() {
     throw UnimplementedError('uuidForSession() has not been implemented.');
   }
 
-  @override
   Future<String> uuidForInstallation() {
     throw UnimplementedError('uuidForInstallation() has not been implemented.');
   }
 
-  @override
   Future<String> uuidForVendor() {
     throw UnimplementedError('uuidForVendor() has not been implemented.');
   }
 
-  @override
   Future<String> uuidForDevice() {
     throw UnimplementedError('uuidForDevice() has not been implemented.');
   }
 
-  @override
   Future<String> uuidForDeviceMigratingValue({
     required String value,
     required bool commitMigration,
@@ -49,7 +57,6 @@ class MockFcuuidKitPlatform
         'uuidForDeviceMigratingValue({required value, required commitMigration}) has not been implemented.');
   }
 
-  @override
   Future<String?> uuidForDeviceMigratingValueForKey({
     required String key,
     String? service,
@@ -60,37 +67,19 @@ class MockFcuuidKitPlatform
         'uuidForDeviceMigratingValue({required key, service, accessGroup, required commitMigration}) has not been implemented.');
   }
 
-  @override
   Future<List<String>> uuidsOfUserDevices() {
     throw UnimplementedError('uuidsOfUserDevices() has not been implemented.');
   }
 
-  @override
   Future<List<String>> uuidsOfUserDevicesExcludingCurrentDevice() {
     throw UnimplementedError(
         'uuidsOfUserDevicesExcludingCurrentDevice() has not been implemented.');
   }
 
-  @override
   Future<bool> uuidValueIsValid({
     required String uuid,
   }) {
     throw UnimplementedError(
         'uuidValueIsValid({required uuid}) has not been implemented.');
   }
-}
-
-void main() {
-  final FcuuidKitPlatform initialPlatform = FcuuidKitPlatform.instance;
-
-  test('$MethodChannelFcuuidKit is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelFcuuidKit>());
-  });
-
-  test('uuid', () async {
-    final MockFcuuidKitPlatform fakePlatform = MockFcuuidKitPlatform();
-    FcuuidKitPlatform.instance = fakePlatform;
-
-    expect(await Fcuuid.instance.uuid(), '123456789');
-  });
 }

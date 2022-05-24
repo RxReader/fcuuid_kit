@@ -1,15 +1,18 @@
-import 'dart:async';
-import 'package:flutter/material.dart';
-
 import 'package:fcuuid_kit/fcuuid_kit.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({
+    super.key,
+  });
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -20,22 +23,26 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _uuid() async {
-    print('uuid: ${await Fcuuid.uuid()}');
-    print('uuidForKey: ${await Fcuuid.uuidForKey(key: 'abc')}');
-    print('uuidForSession: ${await Fcuuid.uuidForSession()}');
-    print('uuidForInstallation: ${await Fcuuid.uuidForInstallation()}');
-    print('uuidForVendor: ${await Fcuuid.uuidForVendor()}');
-    print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
-    print(
-        'uuidForDeviceMigratingValue: ${await Fcuuid.uuidForDeviceMigratingValue(value: await Fcuuid.uuid(), commitMigration: true)}');
-    print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
-    // print('uuidForDeviceMigratingValueForKey: ${await Fcuuid.uuidForDeviceMigratingValueForKey(key: 'abc', commitMigration: true)}'); // 错误示例（会崩溃），不知正确用法
-    // print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
-    print('uuidsOfUserDevices: ${await Fcuuid.uuidsOfUserDevices()}');
-    print(
-        'uuidsOfUserDevicesExcludingCurrentDevice: ${await Fcuuid.uuidsOfUserDevicesExcludingCurrentDevice()}');
-    print(
-        'uuidValueIsValid: ${await Fcuuid.uuidValueIsValid(uuid: await Fcuuid.uuidForDevice())}');
+    if (kDebugMode) {
+      print('uuid: ${await Fcuuid.instance.uuid()}');
+      print('uuidForKey: ${await Fcuuid.instance.uuidForKey(key: 'abc')}');
+      print('uuidForSession: ${await Fcuuid.instance.uuidForSession()}');
+      print(
+          'uuidForInstallation: ${await Fcuuid.instance.uuidForInstallation()}');
+      print('uuidForVendor: ${await Fcuuid.instance.uuidForVendor()}');
+      print('uuidForDevice: ${await Fcuuid.instance.uuidForDevice()}');
+      print(
+          'uuidForDeviceMigratingValue: ${await Fcuuid.instance.uuidForDeviceMigratingValue(value: await Fcuuid.instance.uuid(), commitMigration: true)}');
+      print('uuidForDevice: ${await Fcuuid.instance.uuidForDevice()}');
+      // print('uuidForDeviceMigratingValueForKey: ${await Fcuuid.uuidForDeviceMigratingValueForKey(key: 'abc', commitMigration: true)}'); // 错误示例（会崩溃），不知正确用法
+      // print('uuidForDevice: ${await Fcuuid.uuidForDevice()}');
+      print(
+          'uuidsOfUserDevices: ${await Fcuuid.instance.uuidsOfUserDevices()}');
+      print(
+          'uuidsOfUserDevicesExcludingCurrentDevice: ${await Fcuuid.instance.uuidsOfUserDevicesExcludingCurrentDevice()}');
+      print(
+          'uuidValueIsValid: ${await Fcuuid.instance.uuidValueIsValid(uuid: await Fcuuid.instance.uuidForDevice())}');
+    }
   }
 
   @override
@@ -43,7 +50,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('FCUUID'),
+          title: Text('FCUUID'),
         ),
       ),
     );
