@@ -11,9 +11,10 @@ jobs:
         os: [macos-latest]
     steps:
       - uses: actions/checkout@v3
-      - name: Run clang lint
+      - name: Run ${{ github.repository_owner }}/clang-format@shell
         run: |
-          clang-format -style=file -i ios/Classes/*.h ios/Classes/*.m --dry-run
+          brew install clang-format
+      - run: clang-format -style=file -i ios/Classes/*.h ios/Classes/*.m --dry-run
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
